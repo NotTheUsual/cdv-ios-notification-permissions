@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.megaphone.cordova.NotificationPermissions" version="0.1.0" xmlns="http://www.phonegap.com/ns/plugins/1.0" >
+  <name>NotificationPermissions</name>
+  <author>Elliot Stokes</author>
+
+  <engines>
+    <engine name="cordova" version=">=3.0.0" />
+  </engines>
+
+  <js-module name="NotificationPermissions" src="www/NotificationPermissions.js">
+      <clobbers target="cordova.plugins.NotificationPermissions" />
+  </js-module>
+
+  <platform name="ios">
+    <hook type="after_plugin_install" src="hooks/add_swift_support.js" />
+
+    <header-file src="src/ios/cordova-plugin-NotificationPermissions-Bridging-Header.h" />
+    <source-file src="src/ios/NotificationPermissions.swift" />
+
+    <config-file target="config.xml" parent="/*">
+      <feature name="NotificationPermissions">
+        <param name="ios-package" value="NotificationPermissions" />
+        <param name="onload" value="true" />
+      </feature>
+    </config-file>
+  </platform>
+</plugin>
