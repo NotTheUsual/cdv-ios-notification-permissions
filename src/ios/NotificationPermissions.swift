@@ -10,21 +10,9 @@
     func checkStatus(command: CDVInvokedUrlCommand) {
         commandDelegate!.runInBackground { [unowned self] in
             let application = UIApplication.sharedApplication()
-            var status: Bool
-            
-            if #available(iOS 8.0, *) {
-                status = application.isRegisteredForRemoteNotifications()
-            } else {
-                let enabledNotifications = application.enabledRemoteNotificationTypes()
-                status = self.notNone(enabledNotifications)
-            }
-            let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAsBool: status)
+            let isRegistered = application.isRegisteredForRemoteNotifications()
+            let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAsBool: isRegistered)
             self.commandDelegate!.sendPluginResult(pluginResult, callbackId: command.callbackId)
         }
-    }
-    
-    private func notNone(enabledNotifications: UIRemoteNotificationType) -> Bool {
-        return enabledNotifications != UIRemoteNotificationType.None &&
-               enabledNotifications != UIRemoteNotificationType.NewsstandContentAvailability
     }
 }
