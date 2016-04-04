@@ -4,4 +4,4 @@ iOS Cordova plugin to check notification permission status. Doesn't check for ba
 
 ## Installation
 
-    $ cordova plugins add https://github.com/NotTheUsual/cdv-ios-notification-permissions
+    $ cordova plugin add https://github.com/NotTheUsual/cdv-ios-notification-permissions
